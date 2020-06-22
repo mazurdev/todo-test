@@ -1,0 +1,59 @@
+@import "variables";
+@import "../../../../node_modules/rfs/scss";
+
+//---------------------------------------headings
+@mixin h1 {
+  @include rfs(64px);
+  font-family: $font-family;
+}
+@mixin h2 {
+  @include rfs(48px);
+  font-family: $font-family;
+}
+@mixin h3 {
+  @include rfs(36px);
+  font-family: $font-family;
+}
+@mixin h4 {
+  @include rfs(24px);
+  font-family: $font-family;
+}
+@mixin h5 {
+  @include rfs(18px);
+  font-family: $font-family;
+}
+@mixin h6 {
+  @include rfs(14px);
+  font-family: $font-family;
+}
+@mixin p-18 {
+  @include rfs(18px);
+  font-family: $font-family;
+}
+@mixin p-16 {
+  @include rfs(16px);
+  font-family: $font-family;
+}
+//---------------------------------------include mixins to heading tags
+h1 {@include h1;}
+h2 {@include h2;}
+h3 {@include h3;}
+h4 {@include h4;}
+h5 {@include h5;}
+h6 {@include h6;}
+
+//---------------------------------------others
+@mixin disableAnim {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+@mixin disableCursor {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
