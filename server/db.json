@@ -1,4 +1,16 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "username": "admin@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "username": "test@gmail.com",
+      "password": "123456"
+    }
+  ],
   "todos": [
     {
       "id": 1,
