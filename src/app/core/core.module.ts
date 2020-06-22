@@ -2,13 +2,8 @@ import {CommonModule} from '@angular/common';
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-// import {environment} from '@environments/environment';
-
-// import {LoaderService} from '@shared/services/data/loader.service';
-// import {LoaderInterceptor} from '@shared/helpers/loader.iterceptor';
-// import {DataService} from '@shared/services/data/data.service';
-// import {MediaService} from '@shared/services/media.service';
-// import {CustomPreloadStrategy} from '@shared/helpers/customPreloadStrategy';
+import {LoaderService} from '@shared/services/loader.service';
+import {LoaderInterceptor} from '@shared/helpers/loader.iterceptor';
 
 @NgModule({
   imports: [
@@ -29,15 +24,12 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        // CustomPreloadStrategy,
-        // LoaderService,
-        // DataService,
-        // MediaService,
-        // {
-        //   provide: HTTP_INTERCEPTORS,
-        //   useClass: LoaderInterceptor,
-        //   multi: true
-        // }
+        LoaderService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: LoaderInterceptor,
+          multi: true
+        }
       ]
     };
   }

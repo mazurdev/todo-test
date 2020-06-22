@@ -37,16 +37,12 @@ server.listen(3000, () => {
 
 function formatUser(user) {
   delete user.password;
-  user.role = user.email === 'admin@gmail.com'
-    ? 'admin'
-    : 'user';
+  user.role = user.email === 'admin@gmail.com' ? 'admin' : 'user';
   return user;
 }
 
 function checkIfAdmin(user, bypassToken = false) {
-  return user.email === 'admin@gmail.com' || bypassToken === true
-    ? 'admin-token'
-    : 'user-token';
+  return user.email === 'admin@gmail.com' || bypassToken === true ? 'admin-token' : 'user-token';
 }
 
 function isAuthorized(req) {

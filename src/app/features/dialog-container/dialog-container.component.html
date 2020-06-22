@@ -1,0 +1,51 @@
+<button class="close" type="button" mat-button (click)="closeDialog()">
+  <mat-icon aria-hidden="false" aria-label="Close dialog">close</mat-icon>
+</button>
+<h1 mat-dialog-title>Edit {{ todo$.title }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="editTodoForm" (ngSubmit)="onSubmit(editTodoForm.value)">
+
+    <mat-form-field>
+      <mat-label>Number:</mat-label>
+      <input
+          matInput
+          type="number"
+          formControlName="number"
+          autocomplete>
+    </mat-form-field>
+    <ng-container *ngFor="let validation of validationMessages.number">
+      <mat-error *ngIf="editTodoForm.get('number').hasError(validation.type) && (editTodoForm.get('number').dirty || editTodoForm.get('number').touched)">
+        {{ validation.message }}
+      </mat-error>
+    </ng-container>
+
+    <mat-form-field>
+      <mat-label>Title:</mat-label>
+      <input
+          matInput
+          type="text"
+          formControlName="title"
+          autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description:</mat-label>
+      <input
+          matInput
+          #description
+          formControlName="description"
+          maxlength="256"
+          placeholder="Ex. I must do it...">
+      <ng-container *ngFor="let validation of validationMessages.description">
+        <mat-error *ngIf="editTodoForm.get('description').hasError(validation.type) && (editTodoForm.get('description').dirty || editTodoForm.get('id').touched)">
+          {{ validation.message }}
+        </mat-error>
+      </ng-container>
+      <mat-hint align="end">{{ description.value.length }} / 256</mat-hint>
+    </mat-form-field>
+
+    <button class="submit-btn" mat-raised-button type="submit" [disabled]="!editTodoForm.valid">Edit</button>
+  </form>
+</div>
+<div mat-dialog-actions>
+</div>

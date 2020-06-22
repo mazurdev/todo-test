@@ -1,0 +1,51 @@
+<div class="page page-auth">
+  <td-header title="Log In" [isLogged]="false"></td-header>
+
+  <main class="content">
+    <td-loader></td-loader>
+    <div class="form-wrap">
+      <h1>Fill inputs</h1>
+      <mat-card class="card">
+
+        <mat-card-content>
+          <form [formGroup]="logInForm" (ngSubmit)="onSubmit(logInForm.value)">
+
+            <mat-form-field>
+              <mat-label>Your Email:</mat-label>
+              <input
+                  matInput
+                  type="text"
+                  formControlName="email"
+                  autocomplete
+                  required>
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validationMessages.email">
+              <mat-error *ngIf="logInForm.get('email').hasError(validation.type) && (logInForm.get('email').dirty || logInForm.get('email').touched)">
+                {{ validation.message }}
+              </mat-error>
+            </ng-container>
+
+            <mat-form-field>
+              <mat-label>Your Password:</mat-label>
+              <input
+                  matInput
+                  type="password"
+                  formControlName="password"
+                  required>
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validationMessages.password">
+              <mat-error *ngIf="logInForm.get('password').hasError(validation.type) && (logInForm.get('password').dirty || logInForm.get('password').touched)">
+                {{ validation.message }}
+              </mat-error>
+            </ng-container>
+
+            <button class="submit-btn" mat-raised-button type="submit" [disabled]="!logInForm.valid">Log In</button>
+          </form>
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+  </main>
+
+  <td-footer></td-footer>
+</div>

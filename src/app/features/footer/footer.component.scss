@@ -1,0 +1,7 @@
+@import "../../../assets/styles/utils/mixins";
+
+.toolbar {
+  .copyright p {
+    @include p-16;
+  }
+}

@@ -1,10 +1,12 @@
 @import "../utils/mixins";
 
 // container
+* {
+  font-family: $font-family;
+}
 body, html {
   padding: 0;
   margin: 0;
-  font-family: $font-family;
 }
 html {
   height: 100%;
