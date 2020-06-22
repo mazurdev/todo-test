@@ -1,0 +1,29 @@
+@import "../../../assets/styles/utils/mixins";
+
+.page-not-found {
+  .bg-page-not-found {
+    background: $white;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .not-found-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        margin-top: -80px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .back {
+        a {
+          @include p-16;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.page {
+  position: relative;
+  main.content {
+    min-height: 100vh;
+    height: 100%;
+    padding: 25px;
+  }
+}
+mat-form-field {
+  width: 100%;
+}
+.validation-errors {
+  padding: 5px 0;
+}
+ul {
+  padding-inline-start: 20px;
+}
+
+.cdk-overlay-pane.custom-modal-panel {
+  position: relative!important;
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+  }
+}

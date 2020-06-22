@@ -1,0 +1,15 @@
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .card {
+    width: 100%;
+    max-width: 360px;
+  }
+  button.submit-btn {
+    display: block;
+    margin: 20px auto 0;
+  }
+}

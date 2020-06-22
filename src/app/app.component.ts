@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {ROUTES} from '@shared/helpers/routes';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'td-root',
+  template: `
+    <router-outlet></router-outlet>
+  `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todo-test';
+
+  constructor(
+    private router: Router
+  ) {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.router.navigate([ROUTES.TODO]);
+    }
+  }
+
 }

@@ -1,0 +1,67 @@
+@import "../utils/mixins";
+
+// container
+* {
+  font-family: $font-family;
+}
+body, html {
+  padding: 0;
+  margin: 0;
+}
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  height: 100%;
+}
+
+// normalize
+h1, h2, h3, h4, h5, h6, p, svg, button, img, div, form, input, li:focus-within a {
+  outline:  none !important;
+}
+img {
+  max-width: 100%;
+}
+
+// links
+a:hover, button:hover {
+  cursor: pointer;
+  transition: $transition3;
+  text-decoration: none;
+}
+a.active {
+  @include disableCursor;
+  color: $overlay !important;
+}
+// form
+input {
+  @include p-16;
+  color: $placeholder;
+}
+
+// selection
+::selection {
+  background-color: $primary;
+  color: $white;
+}
+::-moz-selection {
+  background-color: $primary;
+  color: $white;
+}
+
+// placeholder
+::-webkit-input-placeholder {
+  color: $placeholder !important;
+}
+::-moz-placeholder {
+  color: $placeholder !important;
+}
+:-ms-input-placeholder {
+  color: $placeholder !important;
+}
+:-moz-placeholder {
+  color: $placeholder !important;
+}

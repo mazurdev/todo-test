@@ -1,39 +1,61 @@
 {
   "name": "todo-test",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Todo Test Task for Israel IT",
+  "keywords": [
+    "Angular",
+    "Todo",
+    "TypeScript",
+    "Lazy loading",
+    "Auth",
+    "JSON Server"
+  ],
+  "repository": "github:mazurdev/todo-test",
+  "contributors": [
+    "Vladislav Mazur <vlad.developm@gmail.com> (https://mazurdev.com)"
+  ],
+  "author": "Vladislav Mazur <vlad.developm@gmail.com> (https://mazurdev.com)",
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "json-server": "json-server --watch servre/db.json",
+    "server": "ts-node ./server/server.ts",
+    "analyze:bundle": "webpack-bundle-analyzer dist/stats-es2015.json",
+    "postinstall": "ngcc"
   },
-  "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.14",
-    "@angular/cdk": "~8.2.3",
-    "@angular/common": "~8.2.14",
-    "@angular/compiler": "~8.2.14",
-    "@angular/core": "~8.2.14",
-    "@angular/forms": "~8.2.14",
-    "@angular/material": "^8.2.3",
-    "@angular/platform-browser": "~8.2.14",
-    "@angular/platform-browser-dynamic": "~8.2.14",
-    "@angular/router": "~8.2.14",
-    "rxjs": "~6.4.0",
+    "@angular/animations": "~9.1.11",
+    "@angular/cdk": "~9.2.4",
+    "@angular/common": "~10.0.0-rc.6",
+    "@angular/compiler": "~9.1.11",
+    "@angular/core": "~9.1.11",
+    "@angular/forms": "~9.1.11",
+    "@angular/material": "^9.2.4",
+    "@angular/platform-browser": "~9.1.11",
+    "@angular/platform-browser-dynamic": "~9.1.11",
+    "@angular/router": "~9.1.11",
+    "json-server": "^0.16.1",
+    "modern-normalize": "^0.6.0",
+    "rfs": "^9.0.3",
+    "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.25",
-    "@angular/cli": "~8.3.25",
-    "@angular/compiler-cli": "~8.2.14",
-    "@angular/language-service": "~8.2.14",
-    "@types/node": "~8.9.4",
+    "@angular-devkit/build-angular": "~0.901.9",
+    "@angular/cli": "~9.1.9",
+    "@angular/compiler-cli": "~9.1.11",
+    "@angular/language-service": "~9.1.11",
+    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "codelyzer": "^5.0.0",
+    "codelyzer": "^5.1.2",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -44,6 +66,11 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.8.3"
+  },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 6.0.0",
+    "yarn": ">= 1.0.0"
   }
 }

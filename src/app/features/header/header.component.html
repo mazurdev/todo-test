@@ -1,0 +1,18 @@
+<header>
+  <mat-toolbar color="primary" class="toolbar">
+    <mat-toolbar-row>
+      <span class="title">{{ title }}</span>
+      <ng-container *ngIf="isLogged">
+        <span class="spacer"></span>
+        <div class="actions">
+          <button mat-button type="button" class="icon" (click)="addTodo()">
+            <mat-icon aria-hidden="false" aria-label="Add some Todo">add</mat-icon>
+          </button>
+          <button mat-button type="button" class="icon" (click)="logOut()">
+            <mat-icon aria-hidden="false" aria-label="Log Out">exit_to_app</mat-icon>
+          </button>
+        </div>
+      </ng-container>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>

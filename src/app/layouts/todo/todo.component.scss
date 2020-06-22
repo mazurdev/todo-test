@@ -1,0 +1,35 @@
+@import "../../../assets/styles/utils/mixins";
+
+.page-todo {
+  .card-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .card {
+      cursor: pointer;
+      margin: 10px;
+      transition: transform $transition3, box-shadow $transition3;
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: $box-shadow-white;
+      }
+      @media all and (min-width: 760px) {
+        flex-basis: calc((100% / 3) - (10px * 2));
+      }
+      @media all and (max-width: 760px) {
+        flex-basis: calc((100% / 2) - (10px * 2));
+      }
+      @media all and (max-width: 560px) {
+        flex-basis: 100%;
+      }
+      .card-content {
+        margin: 20px 0;
+      }
+      .card-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
