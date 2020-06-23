@@ -21,13 +21,6 @@
       "createdAt": "2020-06-22T21:00:00.000Z"
     },
     {
-      "id": 2,
-      "number": 2,
-      "title": "Completed Test Task for Israel IT",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-      "createdAt": "2020-06-22T21:00:00.000Z"
-    },
-    {
       "id": 3,
       "number": 345,
       "title": "Read a book Clean Code",
@@ -36,15 +29,23 @@
     },
     {
       "id": 4,
-      "number": 589,
-      "title": "Pass English Evaluation",
+      "number": 5876556,
+      "title": "Pass English Evaluation Updated",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "editedAt": "2020-06-29T21:00:00.000Z",
       "createdAt": "2020-06-22T21:00:00.000Z"
     },
     {
       "id": 5,
       "number": 231,
       "title": "Buy PlayStation",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "createdAt": "2020-06-22T21:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "number": 123,
+      "title": "Completed TODO Tast for Israel IT",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
       "createdAt": "2020-06-22T21:00:00.000Z"
     }
