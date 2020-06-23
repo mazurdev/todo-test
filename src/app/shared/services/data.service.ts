@@ -12,12 +12,11 @@ import {HelperService} from '@shared/services/helper.service';
   providedIn: 'root'
 })
 export class DataService {
-  chosenTodo: TodoInterface;
-  private todosSubject$ = new BehaviorSubject<TodoInterface[]>([]);
-  readonly TODOS = this.todosSubject$.asObservable();
-  private dataStore: { todos: TodoInterface[] } = { todos: [] };
-  todosAsInterface: TodoInterface[] = [];
+
+  todosSubject$ = new BehaviorSubject<TodoInterface[]>([]);
+  dataStore: { todos: TodoInterface[] } = { todos: [] };
   API_URL = environment.apiUrl;
+  chosenTodo: TodoInterface;
 
   constructor(
     private http: HttpClient,
@@ -31,39 +30,28 @@ export class DataService {
 
   getAllTodos(): Observable<TodoInterface[]> {
     return this.http.get<TodoInterface[]>(`${this.API_URL}/todos`).pipe(
-      tap(todos => {
-        this.todosAsInterface = todos as TodoInterface[];
-        this.dataStore.todos = todos;
-        this.todosSubject$.next(Object.assign({}, this.dataStore).todos);
-        // this.todosSubject$.next(this.todosAsInterface);
-        console.log('getAllTodos in DataService', this.todosSubject$);
-      }),
       catchError(this.errorHandler)
     );
   }
 
   createTodo(newTodo): Observable<TodoInterface> {
     return this.http.post<TodoInterface>(`${this.API_URL}/todos`, newTodo).pipe(
-      tap(() => {
-        const items = this.todosSubject$.value;
-        this.todosSubject$.next([...items, newTodo]);
-      }),
+      // tap(() => {
+      //   const items = this.todosSubject$.value;
+      //   this.todosSubject$.next([...items, newTodo]);
+      // }),
       catchError(this.errorHandler)
     );
   }
 
-  updateTodo(id, updatedData): Observable<TodoInterface> {
+  updateTodo(id: string, updatedData): Observable<TodoInterface> {
     return this.http.put<TodoInterface>(`${this.API_URL}/todos/${id}`, updatedData).pipe(
-      tap((res) => {
-        // this.todosSubject$.next(updatedData);
-        this.dataStore.todos.forEach((t, i) => {
-          if (t.id === res.id) {
-            this.dataStore.todos[i] = res;
-          }
-        });
-        this.todosSubject$.next(Object.assign({}, this.dataStore).todos);
-        console.log('updateTodo in DataService', this.todosSubject$);
-      }),
+      catchError(this.errorHandler)
+    );
+  }
+
+  removeTodo(id: string): Observable<TodoInterface> {
+    return this.http.delete<TodoInterface>(`${this.API_URL}/todos/${id}`).pipe(
       catchError(this.errorHandler)
     );
   }

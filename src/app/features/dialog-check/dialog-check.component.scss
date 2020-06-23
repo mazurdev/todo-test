@@ -1,0 +1,20 @@
+@import "../../../assets/styles/utils/mixins";
+
+h3.title {
+  text-align: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    @include p-18;
+    text-align: center;
+  }
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

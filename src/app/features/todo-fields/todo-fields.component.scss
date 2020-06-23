@@ -1,0 +1,11 @@
+.form {
+  padding: 5px 0;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  .remove-btn {
+    margin: 10px 0;
+  }
+}

@@ -9,6 +9,8 @@ import {RouterModule} from '@angular/router';
 
 import {DialogContainerComponent} from '@features/dialog-container/dialog-container.component';
 import {DialogEntryComponent} from '@features/dialog-entry/dialog-entry.component';
+import {DialogCheckComponent} from './dialog-check/dialog-check.component';
+import {TodoFieldsComponent} from './todo-fields/todo-fields.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {DialogEntryComponent} from '@features/dialog-entry/dialog-entry.componen
     FooterComponent,
     LoaderComponent,
     DialogContainerComponent,
-    DialogEntryComponent
+    DialogEntryComponent,
+    DialogCheckComponent,
+    TodoFieldsComponent
   ],
   imports: [
     CommonModule,
@@ -26,9 +30,7 @@ import {DialogEntryComponent} from '@features/dialog-entry/dialog-entry.componen
   exports: [
     HeaderComponent,
     FooterComponent,
-    LoaderComponent,
-    DialogContainerComponent,
-    DialogEntryComponent
+    LoaderComponent
   ]
 })
 export class FeaturesModule {

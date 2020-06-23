@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatProgressSpinnerModule,
     MatDividerModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule
   ],
   exports: [
     // utils
@@ -45,7 +47,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatProgressSpinnerModule,
     MatDividerModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule
   ]
 })
 export class SharedModule {}
