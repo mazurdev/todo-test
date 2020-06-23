@@ -27,6 +27,17 @@ ul {
     margin: 5px;
   }
 }
-.cdk-global-overlay-wrapper {
+.cdk-global-overlay-wrapper, .cdk-overlay-connected-position-bounding-box {
   background: $overlay;
+}
+.mat-datepicker-popup {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0 !important;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

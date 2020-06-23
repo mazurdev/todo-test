@@ -8,7 +8,7 @@
   <main class="content">
     <td-loader></td-loader>
 
-    <h1>TODO List</h1>
+    <h1>Welcome,  This is your TODO List</h1>
 
     <div class="card-wrap">
       <mat-card *ngFor="let todo of todos$ | async; trackBy: trackByItem;" class="card">
@@ -33,8 +33,8 @@
             <button mat-button type="button" (click)="editTodo(todo.id, todo)">
               <mat-icon color="primary" class="icon" aria-hidden="false" aria-label="Edit Todo">create</mat-icon>
             </button>
-            <button mat-button type="button">
-              <mat-icon color="warn" class="icon" aria-hidden="false" aria-label="Remove Todo" (click)="removeTodo(todo.id, todo.title)">delete</mat-icon>
+            <button mat-button type="button" (click)="removeTodo(todo.id, todo.title)">
+              <mat-icon color="warn" class="icon" aria-hidden="false" aria-label="Remove Todo">delete</mat-icon>
             </button>
           </mat-card-actions>
         </div>

@@ -19,6 +19,8 @@ export class TodoFieldsComponent implements OnInit, OnDestroy {
   todo$: TodoInterface;
   todoForm: FormGroup;
   private sub: Subscription;
+  minDate = new Date(1990, 0, 1);
+  maxDate = new Date(2099, 0, 1);
   validationMessages = {
     number: [
       {type: 'pattern', message: 'Number cannot contains letters'},
@@ -35,31 +37,40 @@ export class TodoFieldsComponent implements OnInit, OnDestroy {
     private dataService: DataService,
     private helperService: HelperService,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.todoAction === 'edit') {
       this.todo$ = this.dataService.chosenTodo;
     }
     this.todoForm = this.fb.group({
+      title: new FormControl(this.todoAction === 'edit' ? this.todo$.title : ''),
+      description: new FormControl(this.todoAction === 'edit' ? this.todo$.description : '', Validators.compose([
+        Validators.maxLength(256),
+      ])),
       number: new FormControl(this.todoAction === 'edit' ? this.todo$.number : '', Validators.compose([
         Validators.pattern('^[0-9]*$'),
         Validators.maxLength(8),
       ])),
-      title: new FormControl(this.todoAction === 'edit' ? this.todo$.title : ''),
-      description: new FormControl(this.todoAction === 'edit' ? this.todo$.description : '', Validators.compose([
-        Validators.maxLength(256),
-      ]))
+      createdAt: new FormControl(this.todoAction === 'edit' ? this.todo$.createdAt : new Date())
     });
   }
 
   removeTodo() {
+    this.openCheckDialog('remove', this.todo$.id, this.todo$.title);
+  }
+
+  openCheckDialog(action: string, id: string, title: string, num?: number, description?: string, createdAt?: Date) {
     this.dialog.open(DialogCheckComponent, {
       autoFocus: true,
       data: {
-        id: this.todo$.id,
-        title: this.todo$.title,
-        action: 'remove'
+        id,
+        number: num,
+        title,
+        description,
+        createdAt,
+        action
       }
     });
   }
@@ -78,8 +89,8 @@ export class TodoFieldsComponent implements OnInit, OnDestroy {
         number: data.number,
         title: data.title,
         description: data.description,
-        editedAt: new Date(new Date().toLocaleDateString()),
-        createdAt: this.todo$.createdAt
+        editedAt: new Date(data.createdAt),
+        createdAt: new Date(this.todo$.createdAt)
       };
       this.sub = this.dataService.updateTodo(this.todo$.id, updatedTodo).subscribe(res => {
         this.dataService.dataStore.todos.forEach((t, i) => {
@@ -96,32 +107,17 @@ export class TodoFieldsComponent implements OnInit, OnDestroy {
       });
     }
     if (action === 'create') {
-      this.dialog.open(DialogCheckComponent, {
-        autoFocus: true,
-        data: {
-          id: null,
-          number: data.number,
-          title: data.title,
-          description: data.description,
-          createdAt: new Date(new Date().toLocaleDateString()),
-          action: 'create'
-        }
-      });
-      // const newTodo = {
-      //   id: null,
-      //   number: data.number,
-      //   title: data.title,
-      //   description: data.description,
-      //   createdAt: new Date(new Date().toLocaleDateString())
-      // };
-      // this.dataService.createTodo(newTodo).subscribe(res => {
-      //   this.dataService.dataStore.todos.push(res);
-      //   this.dataService.todosSubject$.next(Object.assign({}, this.dataService.dataStore).todos);
-      // }, e => {
-      //   this.helperService.showSnackBar(e.error);
-      // }, () => {
-      //   this.todoForm.reset();
-      //   this.closeDialog();
+      this.openCheckDialog('create', null, data.title, data.number, data.description, new Date(data.createdAt));
+      // this.dialog.open(DialogCheckComponent, {
+      //   autoFocus: true,
+      //   data: {
+      //     id: null,
+      //     number: data.number,
+      //     title: data.title,
+      //     description: data.description,
+      //     createdAt: new Date(data.createdAt),
+      //     action: 'create'
+      //   }
       // });
     }
   }

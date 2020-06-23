@@ -6,6 +6,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {ROUTES} from '@shared/helpers/routes';
 import {Observable} from 'rxjs';
+import {DialogCheckComponent} from '@features/dialog-check/dialog-check.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'td-todo',
@@ -20,8 +22,10 @@ export class TodoComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private helperService: HelperService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private dialog: MatDialog
+  ) {
+  }
 
   ngOnInit() {
     this.getAllTodos();
@@ -50,7 +54,14 @@ export class TodoComponent implements OnInit {
   }
 
   removeTodo(id: string, title: string) {
-    this.helperService.openCheckDialog(id, title, 'remove');
+    this.dialog.open(DialogCheckComponent, {
+      autoFocus: true,
+      data: {
+        id,
+        title,
+        action: 'remove'
+      }
+    });
   }
 
   trackByItem(index, item) {

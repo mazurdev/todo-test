@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
-
 import {HttpClient} from '@angular/common/http';
-
 import {environment} from '@environments/environment';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {TodoInterface} from '@models/todo.interface';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 import {HelperService} from '@shared/services/helper.service';
 
 @Injectable({
@@ -36,10 +34,6 @@ export class DataService {
 
   createTodo(newTodo): Observable<TodoInterface> {
     return this.http.post<TodoInterface>(`${this.API_URL}/todos`, newTodo).pipe(
-      // tap(() => {
-      //   const items = this.todosSubject$.value;
-      //   this.todosSubject$.next([...items, newTodo]);
-      // }),
       catchError(this.errorHandler)
     );
   }

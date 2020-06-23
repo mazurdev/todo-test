@@ -5,15 +5,19 @@
 <h3 mat-dialog-title class="title">{{ data.action === 'remove' ? ('Remove ' + data.title) : ('Create ' + data.title) }}</h3>
 <div mat-dialog-content class="content">
   <ng-container *ngIf="data.action === 'remove'; else createContainer">
-    <p>Are you sure that you want to remove <b>{{ data.title }}</b> todo?</p>
+    <div class="description-wrap">
+      <p>Are you sure that you want to remove <b>{{ data.title }}</b> todo?</p>
+    </div>
   </ng-container>
   <ng-template #createContainer>
-    <p>Please, check all created data and save new Todo:</p>
-    <ul>
-      <li *ngIf="data.number">Number: <b>{{ data.number }}</b></li>
-      <li *ngIf="data.description">Description: <b>{{ data.description }}</b></li>
-      <li *ngIf="data.createdAt">Creation Date: <b>{{ data.createdAt | date }}</b></li>
-    </ul>
+    <div class="description-wrap">
+      <p>Please, check all created data and save new Todo:</p>
+      <ul>
+        <li *ngIf="data.number">Number: <b>{{ data.number }}</b></li>
+        <li *ngIf="data.description">Description: <b>{{ data.description }}</b></li>
+        <li *ngIf="data.createdAt">Creation Date: <b>{{ data.createdAt | date }}</b></li>
+      </ul>
+    </div>
   </ng-template>
 </div>
 

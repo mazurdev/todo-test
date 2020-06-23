@@ -2,7 +2,7 @@
   <mat-icon aria-hidden="false" aria-label="Close dialog">close</mat-icon>
 </button>
 
-<h1 mat-dialog-title>{{ todoAction === 'edit' ? ('Edit' + todo$.title) : 'Create new Todo' }}</h1>
+<h1 mat-dialog-title>{{ todoAction === 'edit' ? ('Edit ' + todo$.title) : 'Create new Todo' }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="todoForm" (ngSubmit)="onSubmit(todoAction, todoForm.value)" class="form">
 
@@ -46,6 +46,25 @@
     <ng-container *ngFor="let validation of validationMessages.number">
       <mat-error *ngIf="todoForm.get('number').hasError(validation.type) && (todoForm.get('number').dirty || todoForm.get('number').touched)">
         {{ validation.message }}
+      </mat-error>
+    </ng-container>
+
+    <mat-form-field>
+      <mat-label>Creation Date:</mat-label>
+      <input
+          matInput
+          formControlName="createdAt"
+          [min]="minDate"
+          [max]="maxDate"
+          [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <ng-container>
+      <mat-error *ngIf="todoForm.get('createdAt').hasError('matDatepickerMin')">
+        Minimum date should be {{ maxDate | date }}</mat-error>
+      <mat-error *ngIf="todoForm.get('createdAt').hasError('matDatepickerMax')">
+        Maximum date should be {{ maxDate | date }}
       </mat-error>
     </ng-container>
 

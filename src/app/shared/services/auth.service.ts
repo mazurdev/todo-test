@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
-
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-
 import {UserInterface} from '@models/user.interface';
 import {AuthDateInterface} from '@models/auth-date.interface';
-
 import {environment} from '@environments/environment';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
@@ -18,7 +15,10 @@ export class AuthService {
 
   API_URL = environment.apiUrl;
   private userSubject$ = new BehaviorSubject<UserInterface>(null);
-  user$ = this.userSubject$.asObservable();
+
+  get user() {
+    return this.userSubject$.asObservable();
+  }
 
   constructor(
     private http: HttpClient,

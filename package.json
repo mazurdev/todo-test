@@ -24,7 +24,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "json-server": "json-server --watch servre/db.json",
     "server": "ts-node ./server/server.ts",
     "analyze:bundle": "webpack-bundle-analyzer dist/stats-es2015.json",
     "postinstall": "ngcc"
