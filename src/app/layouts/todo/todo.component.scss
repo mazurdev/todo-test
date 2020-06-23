@@ -6,6 +6,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       cursor: pointer;
       margin: 10px;
       transition: transform $transition3, box-shadow $transition3;
@@ -22,6 +25,9 @@
       @media all and (max-width: 560px) {
         flex-basis: 100%;
       }
+      .bottom {
+        position: relative;
+      }
       .card-content {
         margin: 20px 0;
       }
@@ -29,6 +35,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 0;
       }
     }
   }

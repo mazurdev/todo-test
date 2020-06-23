@@ -17,7 +17,7 @@ import {ROUTES} from '@shared/helpers/routes';
 })
 export class TodoComponent implements OnInit {
 
-  todos$: TodoInterface[];
+  todos$;
 
   constructor(
     private dataService: DataService,
@@ -32,19 +32,29 @@ export class TodoComponent implements OnInit {
   }
 
   getAllTodos() {
-    this.dataService.getAllTodos().pipe(
-      takeUntil(this.ngOnDestroy$)
-    ).subscribe(res => {
+    this.dataService.getAllTodos().subscribe();
+    this.todos$ = this.dataService.TODOS.subscribe(res => {
       this.todos$ = res;
-      console.log('Todos: ', this.todos$);
-      this.cdr.markForCheck();
-    }, (e: HttpErrorResponse) => {
-      this.helperService.showSnackBar(e.message);
+      console.log('Todos Subject: ', this.todos$);
     });
+
+    // this.dataService.todos.subscribe(res => {
+    //   this.todos$ = res;
+    //   console.log('Todos Subject: ', this.todos$);
+    // });
+    // this.dataService.getAllTodos().pipe(
+    //   takeUntil(this.ngOnDestroy$)
+    // ).subscribe(res => {
+    //   this.todos$ = res;
+    //   console.log('Todos: ', this.todos$);
+    //   this.cdr.detectChanges();
+    // }, (e: HttpErrorResponse) => {
+    //   this.helperService.showSnackBar(e.message);
+    // });
   }
 
   editTodo(id: string, data: TodoInterface) {
-    this.dataService.chosenData = {
+    this.dataService.chosenTodo = {
       id,
       number: data.number,
       title: data.title,
@@ -56,15 +66,15 @@ export class TodoComponent implements OnInit {
   }
 
   openTodo(id: string, data: TodoInterface) {
-    this.dataService.chosenData = {
-      id,
-      number: data.number,
-      title: data.title,
-      description: data.description,
-      createdAt: data.createdAt,
-      editedAt: data.editedAt
-    };
-    this.router.navigate([ROUTES.TODO + '/' + id]);
+    // this.dataService.chosenTodo = {
+    //   id,
+    //   number: data.number,
+    //   title: data.title,
+    //   description: data.description,
+    //   createdAt: data.createdAt,
+    //   editedAt: data.editedAt
+    // };
+    // this.router.navigate([ROUTES.TODO + '/' + id]);
   }
 
   removeTodo(id: string) {

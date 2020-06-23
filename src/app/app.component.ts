@@ -6,8 +6,7 @@ import {ROUTES} from '@shared/helpers/routes';
   selector: 'td-root',
   template: `
     <router-outlet></router-outlet>
-  `,
-  styleUrls: ['./app.component.scss']
+  `
 })
 export class AppComponent {
 

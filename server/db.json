@@ -21,17 +21,17 @@
     },
     {
       "id": 2,
-      "number": 2346,
+      "number": 43234,
       "title": "Title 2 updated",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has sur",
-      "editedAt": "2020-06-22T21:46:52.000Z"
+      "description": null,
+      "editedAt": "2020-06-22T21:00:00.000Z"
     },
     {
       "id": 3,
+      "number": 1234,
       "title": "Title 3",
       "description": "Description 3",
-      "createdAt": "June 24, 2020",
-      "editedAt": ""
+      "editedAt": "2020-06-22T21:00:00.000Z"
     }
   ]
 }

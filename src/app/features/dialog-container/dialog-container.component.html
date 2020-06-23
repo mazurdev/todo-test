@@ -1,6 +1,7 @@
 <button class="close" type="button" mat-button (click)="closeDialog()">
   <mat-icon aria-hidden="false" aria-label="Close dialog">close</mat-icon>
 </button>
+
 <h1 mat-dialog-title>Edit {{ todo$.title }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="editTodoForm" (ngSubmit)="onSubmit(editTodoForm.value)">
@@ -30,12 +31,16 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Description:</mat-label>
-      <input
+      <textarea
           matInput
           #description
           formControlName="description"
           maxlength="256"
+          matTextareaAutosize
+          matAutosizeMinRows="1"
+          matAutosizeMaxRows="5"
           placeholder="Ex. I must do it...">
+      </textarea>
       <ng-container *ngFor="let validation of validationMessages.description">
         <mat-error *ngIf="editTodoForm.get('description').hasError(validation.type) && (editTodoForm.get('description').dirty || editTodoForm.get('id').touched)">
           {{ validation.message }}

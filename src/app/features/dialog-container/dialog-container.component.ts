@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {TodoInterface} from '@models/todo.interface';
 import {ActivatedRoute} from '@angular/router';
@@ -37,7 +37,7 @@ export class DialogContainerComponent implements OnInit, OnDestroy {
     private helperService: HelperService,
     private fb: FormBuilder
   ) {
-    this.todo$ = this.dataService.chosenData;
+    this.todo$ = this.dataService.chosenTodo;
     console.log('TODO data in Container Dialog: ', this.todo$);
     this.editTodoForm = fb.group({
       number: new FormControl(this.todo$.number, Validators.compose([
@@ -74,10 +74,12 @@ export class DialogContainerComponent implements OnInit, OnDestroy {
       number: data.number,
       title: data.title,
       description: data.description,
-      editedAt: new Date(new Date().toLocaleString())
+      editedAt: new Date(new Date().toLocaleDateString())
     };
+    console.log('updatedTodo in Modal: ', updatedTodo);
     this.dataService.updateTodo(this.todo$.id, updatedTodo).subscribe((res) => {
-      this.dataService.todosSubject$.next(res);
+      console.log('Edit result', res);
+      // console.log('this.dataService.todosSubject$.getValue();', this.dataService.todosSubject$.getValue());
     }, e => {
       this.helperService.showSnackBar(e.error);
     }, () => {

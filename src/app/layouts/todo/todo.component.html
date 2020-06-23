@@ -11,29 +11,36 @@
     <h1>TODO List</h1>
 
     <div class="card-wrap">
-      <mat-card *ngFor="let todo of todos$; trackBy: trackByItem;" class="card" (click)="openTodo(todo.id, todo)">
+      <mat-card
+          *ngFor="let todo of todos$; trackBy: trackByItem;"
+          (click)="openTodo(todo.id, todo)"
+          class="card">
 
-        <mat-card-title>{{ todo.title }}</mat-card-title>
+        <div class="top">
+          <mat-card-title>{{ todo.title }}</mat-card-title>
 
-        <mat-card-content class="card-content">
-          <ul>
-            <li>Number: <b>{{ todo.number ? todo.number : todo.id }}</b></li>
-            <li>Description: <b>{{ (todo.description.length > 50) ? (todo.description | slice:0:60) + '...' : todo.description }}</b></li>
-            <li>Creation Date: <b>{{ todo.createdAt | date }}</b></li>
-            <li>Edit Date: <b>{{ todo.editedAt | date }}</b></li>
-          </ul>
-        </mat-card-content>
+          <mat-card-content class="card-content">
+            <ul>
+              <li>Number: <b>{{ todo.number ? todo.number : todo.id }}</b></li>
+<!--              <li>Description: <b>{{ (todo.description.length > 50) ? (todo.description | slice:0:60) + '...' : todo.description }}</b></li>-->
+              <li>Creation Date: <b>{{ todo.createdAt | date }}</b></li>
+              <li>Edit Date: <b>{{ todo.editedAt | date }}</b></li>
+            </ul>
+          </mat-card-content>
+        </div>
 
-        <mat-divider></mat-divider>
+        <div class="bottom">
+          <mat-divider></mat-divider>
 
-        <mat-card-actions class="card-actions">
-          <button mat-button type="button" (click)="editTodo(todo.id, todo)">
-            <mat-icon color="primary" class="icon" aria-hidden="false" aria-label="Edit Todo">create</mat-icon>
-          </button>
-          <button mat-button type="button">
-            <mat-icon color="warn" class="icon" aria-hidden="false" aria-label="Remove Todo" (click)="removeTodo(todo.id)">delete</mat-icon>
-          </button>
-        </mat-card-actions>
+          <mat-card-actions class="card-actions">
+            <button mat-button type="button" (click)="editTodo(todo.id, todo)">
+              <mat-icon color="primary" class="icon" aria-hidden="false" aria-label="Edit Todo">create</mat-icon>
+            </button>
+            <button mat-button type="button">
+              <mat-icon color="warn" class="icon" aria-hidden="false" aria-label="Remove Todo" (click)="removeTodo(todo.id)">delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </div>
 
       </mat-card>
     </div>
