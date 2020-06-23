@@ -1,3 +1,5 @@
+@import "../utils/variables";
+
 .page {
   position: relative;
   main.content {
@@ -16,7 +18,7 @@ ul {
   padding-inline-start: 20px;
 }
 
-.cdk-overlay-pane.custom-modal-panel {
+.cdk-overlay-pane {
   position: relative!important;
   .close {
     position: absolute;
@@ -24,4 +26,18 @@ ul {
     right: 0;
     margin: 5px;
   }
+}
+.cdk-global-overlay-wrapper, .cdk-overlay-connected-position-bounding-box {
+  background: $overlay;
+}
+.mat-datepicker-popup {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0 !important;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

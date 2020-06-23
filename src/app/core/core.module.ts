@@ -1,6 +1,5 @@
 import {CommonModule} from '@angular/common';
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
-
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoaderService} from '@shared/services/loader.service';
 import {LoaderInterceptor} from '@shared/helpers/loader.iterceptor';

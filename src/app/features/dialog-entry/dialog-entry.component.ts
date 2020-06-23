@@ -19,17 +19,12 @@ export class DialogEntryComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogContainerComponent, {
-      maxWidth: '90vw',
-      height: 'max-content',
-      width: '100%',
-      hasBackdrop: true,
-      backdropClass: 'custom-modal-backdrop',
-      panelClass: 'custom-modal-panel',
       autoFocus: true,
-      ariaLabel: 'Custom Modal',
+      data: {
+        action: 'edit'
+      }
     });
-    dialogRef.afterClosed().subscribe(res => {
-      console.log('After Closed res: ', res);
+    dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['../'], { relativeTo: this.route });
     });
   }

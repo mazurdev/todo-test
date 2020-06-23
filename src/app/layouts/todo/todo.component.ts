@@ -1,50 +1,48 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, Self} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {DataService} from '@shared/services/data.service';
 import {TodoInterface} from '@models/todo.interface';
-import {NgOnDestroy} from '@shared/services/ngOnDestroy.service';
-import {takeUntil} from 'rxjs/operators';
 import {HelperService} from '@shared/services/helper.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {ROUTES} from '@shared/helpers/routes';
+import {Observable} from 'rxjs';
+import {DialogCheckComponent} from '@features/dialog-check/dialog-check.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'td-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
-  providers: [NgOnDestroy],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoComponent implements OnInit {
 
-  todos$: TodoInterface[];
+  todos$: Observable<TodoInterface[]>;
 
   constructor(
     private dataService: DataService,
     private helperService: HelperService,
-    private cdr: ChangeDetectorRef,
     private router: Router,
-    @Self() private ngOnDestroy$: NgOnDestroy
-  ) {}
+    private dialog: MatDialog
+  ) {
+  }
 
   ngOnInit() {
     this.getAllTodos();
   }
 
   getAllTodos() {
-    this.dataService.getAllTodos().pipe(
-      takeUntil(this.ngOnDestroy$)
-    ).subscribe(res => {
-      this.todos$ = res;
-      console.log('Todos: ', this.todos$);
-      this.cdr.markForCheck();
+    this.todos$ = this.dataService.todos;
+    this.dataService.getAllTodos().subscribe(res => {
+      this.dataService.dataStore.todos = res;
+      this.dataService.todosSubject$.next(Object.assign({}, this.dataService.dataStore).todos);
     }, (e: HttpErrorResponse) => {
       this.helperService.showSnackBar(e.message);
     });
   }
 
   editTodo(id: string, data: TodoInterface) {
-    this.dataService.chosenData = {
+    this.dataService.chosenTodo = {
       id,
       number: data.number,
       title: data.title,
@@ -55,20 +53,15 @@ export class TodoComponent implements OnInit {
     this.router.navigate([ROUTES.TODO + '/' + id]);
   }
 
-  openTodo(id: string, data: TodoInterface) {
-    this.dataService.chosenData = {
-      id,
-      number: data.number,
-      title: data.title,
-      description: data.description,
-      createdAt: data.createdAt,
-      editedAt: data.editedAt
-    };
-    this.router.navigate([ROUTES.TODO + '/' + id]);
-  }
-
-  removeTodo(id: string) {
-
+  removeTodo(id: string, title: string) {
+    this.dialog.open(DialogCheckComponent, {
+      autoFocus: true,
+      data: {
+        id,
+        title,
+        action: 'remove'
+      }
+    });
   }
 
   trackByItem(index, item) {

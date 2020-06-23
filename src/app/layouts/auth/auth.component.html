@@ -1,10 +1,10 @@
 <div class="page page-auth">
-  <td-header title="Log In" [isLogged]="false"></td-header>
+  <td-header title="Authenticate" [isLogged]="false"></td-header>
 
   <main class="content">
     <td-loader></td-loader>
     <div class="form-wrap">
-      <h1>Fill inputs</h1>
+      <h1>Log In</h1>
       <mat-card class="card">
 
         <mat-card-content>
@@ -31,6 +31,7 @@
                   matInput
                   type="password"
                   formControlName="password"
+                  autocomplete
                   required>
             </mat-form-field>
             <ng-container *ngFor="let validation of validationMessages.password">

@@ -1,27 +1,47 @@
-# TodoTest
+<p align="center">
+  <a href="https://github.com/mazurdev/todo-test">
+    <img src="https://raw.githubusercontent.com/mazurdev/todo-test/master/meta-assets/preview-logo-angular.png" alt="Angular Logo" width="102" height="127">
+  </a>
+  <h1 align="center">TODO Test Task for Israel IT</h1>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.25.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mazurdev/todo-test/master/meta-assets/preview.gif">
+</p>
+  
+## Table of Content
 
-## Development server
+  * [Getting Started](#getting-started)
+  * [Stack](#stack)
+  * [Useful Commands](#useful-commands)
+  * [License](#license)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting started
+```bash
+1 - git clone https://github.com/mazurdev/todo-test.git
+2 - Go to "todo-test" folder
+3 - npm install
+4 - Change the name of the project "todo-test" to your in files: "angular.json", "package.json", "README.md"
+5 - Run server: npm run server
+6 - Run Client: npm run dev
+```
 
-## Code scaffolding
+## Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  * Angular 9+
+  * JSON Server
+  * Angular Material
+  * RxJs
 
-## Build
+## Useful Commands
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+  * `npm run dev` - starts a dev server
+  * `npm run server` - starts a json server
+  * `npm run start` - it is startup-script for Heroku Deploy
+  * `npm run build` - production build 
+  * `npm run analyze:bundle` - analyze bundle application using webpack-bundle-analyzer
+  * `npm run postinstall` - run ngcc compile libraries
 
-## Running unit tests
+## License
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+[MIT License](https://raw.githubusercontent.com/mazurdev/todo-test/master/LICENSE)

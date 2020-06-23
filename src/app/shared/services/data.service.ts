@@ -1,20 +1,20 @@
 import {Injectable} from '@angular/core';
-
 import {HttpClient} from '@angular/common/http';
-
 import {environment} from '@environments/environment';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {TodoInterface} from '@models/todo.interface';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 import {HelperService} from '@shared/services/helper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  chosenData: TodoInterface;
-  todosSubject$ = new BehaviorSubject<TodoInterface>(null);
+
+  todosSubject$ = new BehaviorSubject<TodoInterface[]>([]);
+  dataStore: { todos: TodoInterface[] } = { todos: [] };
   API_URL = environment.apiUrl;
+  chosenTodo: TodoInterface;
 
   constructor(
     private http: HttpClient,
@@ -23,7 +23,7 @@ export class DataService {
   }
 
   get todos() {
-    return this.todosSubject$;
+    return this.todosSubject$.asObservable();
   }
 
   getAllTodos(): Observable<TodoInterface[]> {
@@ -32,17 +32,20 @@ export class DataService {
     );
   }
 
-  createTodo(todo): Observable<TodoInterface> {
-    return this.http.post<TodoInterface>(`${this.API_URL}/todos`, todo).pipe(
+  createTodo(newTodo): Observable<TodoInterface> {
+    return this.http.post<TodoInterface>(`${this.API_URL}/todos`, newTodo).pipe(
       catchError(this.errorHandler)
     );
   }
 
-  updateTodo(id, updatedData): Observable<TodoInterface> {
+  updateTodo(id: string, updatedData): Observable<TodoInterface> {
     return this.http.put<TodoInterface>(`${this.API_URL}/todos/${id}`, updatedData).pipe(
-      tap(() => {
-        console.log(this.todosSubject$)
-      }),
+      catchError(this.errorHandler)
+    );
+  }
+
+  removeTodo(id: string): Observable<TodoInterface> {
+    return this.http.delete<TodoInterface>(`${this.API_URL}/todos/${id}`).pipe(
       catchError(this.errorHandler)
     );
   }

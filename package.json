@@ -19,13 +19,13 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "start": "node ./server/server.js",
+    "dev": "ng serve --proxy-config proxy.conf.json",
+    "server": "node ./server/server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "json-server": "json-server --watch servre/db.json",
-    "server": "ts-node ./server/server.ts",
     "analyze:bundle": "webpack-bundle-analyzer dist/stats-es2015.json",
     "postinstall": "ngcc"
   },
