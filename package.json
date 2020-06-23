@@ -19,9 +19,9 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "node ./server/server.js",
+    "start": "node server.js",
     "dev": "ng serve --proxy-config proxy.conf.json",
-    "server": "node ./server/server.js",
+    "server": "node server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
