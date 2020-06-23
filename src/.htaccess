@@ -18,9 +18,9 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 ##################################################################### others redirect
-#Redirect 301 /old-page http://example.com/index.html
+#Redirect 301 /old-page https://todo-task-for-israel-it.herokuapp.com/index.html
 ErrorDocument 500 "Houston, we have a problem"
-ErrorDocument 401 http://example.com/404/index.html
+ErrorDocument 401 https://todo-task-for-israel-it.herokuapp.com/404/index.html
 ErrorDocument 404 /404/index.html
 
 ##################################################################### redirect to non-www
@@ -28,7 +28,7 @@ ErrorDocument 404 /404/index.html
 
 #RewriteEngine on
 #RewriteCond %{HTTP_HOST} ^www\.example\.com [NC]
-#RewriteRule ^(.*)$ http://example.com/$1 [L,R=301]
+#RewriteRule ^(.*)$ https://todo-task-for-israel-it.herokuapp.com/$1 [L,R=301]
 
 ## 2 VARIANT - HTTP and HTTPS
 RewriteEngine on
@@ -210,12 +210,12 @@ RewriteEngine on
 # Удалите эту строчку, если вы хотите заблокировать пользователя с пустым Referrer
 RewriteCond %{HTTP_REFERER} !^$
 
-RewriteCond %{HTTP_REFERER} !^https?://(.+\.)?example.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(.+\.)?todo-task-for-israel-it.herokuapp.com [NC]
 RewriteRule \.(jpe?g|png|gif|bmp)$ - [NC,F,L]
 
 # Если вы захотите отображать вместо заблокированного изображения свой баннер,
 # то замените правило выше на это:
-# RewriteRule \.(jpe?g|png|gif|bmp) http://example.com/blocked.png [R,L]
+# RewriteRule \.(jpe?g|png|gif|bmp) https://todo-task-for-israel-it.herokuapp.com/blocked.png [R,L]
 
 # Serve all .pdf files on your site using .htaccess and mod_rewrite with the php script.
 RewriteCond %{REQUEST_FILENAME} -f
